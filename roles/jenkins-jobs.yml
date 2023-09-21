@@ -3,6 +3,6 @@
   become: true
   vars:
     mjobs:
-      - { jobs_name: "cart", repo_name: "https://github.com/naveen3607/cart" }
+      - { job_name: "cart", repo_name: "https://github.com/naveen3607/cart" }
     sjobs:
-      - { jobs_name: "roboshop-terraform", repo_name: "https://github.com/naveen3607/roboshop-terraform" }
+      - { job_name: "roboshop-terraform", repo_name: "https://github.com/naveen3607/roboshop-terraform" }
