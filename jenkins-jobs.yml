@@ -1,6 +1,8 @@
 - name: Create Jenkins Jobs
   hosts: localhost
   become: true
+  roles:
+    - jenkins
   vars:
     mjobs:
       - { job_name: "cart", repo_name: "https://github.com/naveen3607/cart" }
