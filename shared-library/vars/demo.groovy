@@ -10,7 +10,7 @@ def call() {
     pipeline {
         agent any
         stages {
-            stage('Hello') {
+            stage('Compile Code') {
                 steps {
                     echo 'Hello World'
                     script {
