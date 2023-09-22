@@ -1,45 +1,19 @@
 def call() {
-    pipeline {
-        agent any
-        stages {
+    node('workstation') {
             stage('Compile Code') {
-                steps {
-                    sh "env"
-                }
+                print "Hello"
             }
             stage('Test') {
-                steps {
-                    echo 'Hello World'
-                }
+                print "Hello"
             }
             stage('Code Quality') {
-                when {
-                    allOf {
-                        expression { env.BRANCH_NAME != null }
-                        expression { env.TAG_NAME == null }
-                    }
-                }
-                steps {
-                    echo 'Hello World'
-                }
+                print "Hello"
             }
             stage('Code Security') {
-                when {
-                    expression { BRANCH_NAME == "main" }
-                }
-                steps {
-                    echo 'Hello World'
-                }
+                print "Hello"
             }
             stage('Release') {
-                when {
-                    expression { env.TAG_NAME ==~ ".*" }
-                }
-                steps {
-                    echo 'Hello World'
-                    sh "env"
-                }
+                print "Hello"
             }
-        }
     }
 }
