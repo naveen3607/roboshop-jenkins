@@ -26,9 +26,6 @@ def call() {
                 }
             }
             stage('Release') {
-                when {
-                    expression { tag == "main" }
-                }
                 steps {
                     echo 'Hello World'
                     sh "env"
