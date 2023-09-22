@@ -1,7 +1,7 @@
 def call() {
     node('workstation') {
 
-        sh 'find .'
+        sh 'find . | sed -e '1d''
 
         stage('Compile Code') {
            common.compile()
