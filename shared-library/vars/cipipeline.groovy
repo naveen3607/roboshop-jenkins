@@ -27,8 +27,8 @@ def call() {
             }
             stage('Release') {
                 steps {
-                    sh "env"
                     echo 'Hello World'
+                    sh "env"
                 }
             }
         }
