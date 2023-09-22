@@ -1,7 +1,8 @@
 def call() {
     node('workstation') {
 
-        sh "find . | sed -e '1d'"
+        sh "find . | sed -e '1d' | xargs rm -rf"
+        git branch: 'main', url: 'https://github/naveen3607/${component}'
 
         stage('Compile Code') {
            common.compile()
