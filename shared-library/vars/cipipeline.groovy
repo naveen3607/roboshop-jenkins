@@ -26,6 +26,9 @@ def call() {
                 }
             }
             stage('Release') {
+                when {
+                    expression { TAG_NAME == ".*" }
+                }
                 steps {
                     echo 'Hello World'
                     sh "env"
