@@ -9,6 +9,12 @@ def call() {
            common.compile()
         }
         stage('Test') {
+           when {
+               anyOf {
+                   expression { env.BRANCH_NAME == ".*" }
+                   expression { env.TAG_NAME == ".*" }
+               }
+           }
            print "Hello"
         }
         stage('Code Quality') {
