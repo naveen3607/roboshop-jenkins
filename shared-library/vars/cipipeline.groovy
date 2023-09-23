@@ -3,18 +3,21 @@ def call() {
 
         sh "find . | sed -e '1d' | xargs rm -rf"
         sh "env"
-        git branch: "${BRANCH_NAME}", url: "https://github.com/naveen3607/${component}"
+        if (env.TAG_NAME ==~ ".*") {
+            env.BRANCH_NAME == "refs/tags/${env.TAG_NAME}"
+        }
+        else {
+            env.BRANCH_NAME == "${env.BRANCH_NAME}"
+        }
+        checkout scmGit(
+                branches: [[name: branch_name]],
+                userRemoteConfigs: [[url: 'https://github.com/jenkinsci/git-plugin.git']]
+        )
 
         stage('Compile Code') {
            common.compile()
         }
         stage('Test') {
-           when {
-               anyOf {
-                   expression { env.BRANCH_NAME == ".*" }
-                   expression { env.TAG_NAME == ".*" }
-               }
-           }
            print "Hello"
         }
         stage('Code Quality') {
