@@ -5,8 +5,7 @@ def call() {
         sh "env"
         if (env.TAG_NAME ==~ ".*") {
             env.BRANCH_NAME == "refs/tags/${env.TAG_NAME}"
-        }
-        else {
+        } else {
             env.BRANCH_NAME == "${env.BRANCH_NAME}"
         }
         checkout scmGit(
@@ -16,41 +15,16 @@ def call() {
         if (env.TAG_NAME ==~ ".*") {
             common.compile()
             common.release()
-        }
-        else {
+        } else {
             if (env.BRANCH_NAME == "main") {
                 common.compile()
                 common.test()
                 common.codequality()
                 common.codesecurity()
-            }
-            else {
+            } else {
                 common.compile()
                 common.test()
                 common.codequality()
-            }
-        }
-
-
-        stage('Compile Code') {
-           common.compile()
-        }
-        if ((env.BRANCH_NAME ==~ ".*") && (env.TAG_NAME == null)) {
-            stage('Test') {
-                print "Hello"
-            }
-            stage('Code Quality') {
-                print "Hello"
-            }
-        }
-        if (env.BRANCH_NAME == "main") {
-            stage('Code Security') {
-                print "Hello"
-            }
-        }
-        if (env.TAG_NAME ==~ ".*") {
-            stage('Release') {
-                print "Hello"
             }
         }
     }
