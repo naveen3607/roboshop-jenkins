@@ -17,12 +17,11 @@ def call() {
         stage('Compile Code') {
            common.compile()
         }
-        if ((env.BRANCH_NAME ==~ ".*") && (env.TAG_NAME !=~ ".*"))
-            then {
-                stage('Test') {
-                    print "Hello"
-                }
+        if ((env.BRANCH_NAME ==~ ".*") && (env.TAG_NAME !=~ ".*")) {
+            stage('Test') {
+                print "Hello"
             }
+        }
         stage('Code Quality') {
            print "Hello"
         }
