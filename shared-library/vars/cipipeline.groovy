@@ -13,6 +13,24 @@ def call() {
                 branches: [[name: branch_name]],
                 userRemoteConfigs: [[url: "https://github.com/naveen3607/${component}"]]
         )
+        if (env.TAG_NAME ==~ ".*") {
+            common.compile()
+            common.release()
+        }
+        else {
+            if (env.BRANCH_NAME == "main") {
+                common.compile()
+                common.test()
+                common.codequality()
+                common.codesecurity()
+            }
+            else {
+                common.compile()
+                common.test()
+                common.codequality()
+            }
+        }
+
 
         stage('Compile Code') {
            common.compile()
