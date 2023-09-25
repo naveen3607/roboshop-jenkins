@@ -1,6 +1,6 @@
 def compile() {
     if (env.codeType == "maven") {
-        print "maven"
+        sh 'mvn package'
     }
     if (env.codeType == "nodejs") {
         print "nodejs"
