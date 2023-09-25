@@ -32,7 +32,7 @@ def test() {
 
 def codequality() {
     stage('Code Quality') {
-        print 'Code Quality'
+        sh 'sonar-scanner -X -D sonar.host.url=http://172.31.86.97:9000 -D sonar.login=admin -D sonar.password=admin123 -D sonar.projectKey=catalogue -D sonar.qualitygate.wait=true'
     }
 }
 
