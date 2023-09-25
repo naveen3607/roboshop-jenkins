@@ -16,8 +16,17 @@ def compile() {
 }
 
 def test() {
-    stage('Test Case') {
-        print 'Test'
+    if (env.codeType == "maven") {
+        sh '/home/centos/maven/bin/mvn test'
+    }
+    if (env.codeType == "nodejs") {
+        sh 'npm test'
+    }
+    if (env.codeType == "python") {
+        sh 'python -m unittest'
+    }
+    if (env.codeType == "goLang") {
+        sh 'go test'
     }
 }
 
