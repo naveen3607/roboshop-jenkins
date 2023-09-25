@@ -25,11 +25,15 @@ def call() {
                 print "Hello"
             }
         }
-        stage('Code Security') {
-           print "Hello"
+        if (env.BRANCH_NAME == "main") {
+            stage('Code Security') {
+                print "Hello"
+            }
         }
-        stage('Release') {
-           print "Hello"
+        if (env.TAG_NAME ==~ ".*") {
+            stage('Release') {
+                print "Hello"
+            }
         }
     }
 }
