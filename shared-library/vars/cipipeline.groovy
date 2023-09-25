@@ -17,7 +17,7 @@ def call() {
         stage('Compile Code') {
            common.compile()
         }
-        if ((env.BRANCH_NAME ==~ ".*") && (env.TAG_NAME !=~ ".*")) {
+        if ((env.BRANCH_NAME ==~ ".*") && (env.TAG_NAME == null)) {
             stage('Test') {
                 print "Hello"
             }
