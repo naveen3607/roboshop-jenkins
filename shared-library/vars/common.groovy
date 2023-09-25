@@ -32,8 +32,8 @@ def test() {
 
 def codequality() {
     stage('Code Quality') {
-        sonarqube.username = sh (script: 'aws ssm get-parameter --name "sonarqube.username" --query="Parameter.Value"', returnStatus: true)
-        sonarqube.password = sh (script: 'aws ssm get-parameter --name "sonarqube.password" --with-decryption --query="Parameter.Value"', returnStatus: true)
+        sonarqube.username = sh (script: 'aws ssm get-parameter --name "sonarqube.username" --query="Parameter.Value"', returnStdout: true).trim()
+        sonarqube.password = sh (script: 'aws ssm get-parameter --name "sonarqube.password" --with-decryption --query="Parameter.Value"', returnStdout: true).trim()
         sh "sonar-scanner -X -D sonar.host.url=http://172.31.86.97:9000 -D sonar.login=${sonarqube.username} -D sonar.password=${sonarqube.password} -D sonar.projectKey=${component} -D sonar.qualitygate.wait=true"
     }
 }
